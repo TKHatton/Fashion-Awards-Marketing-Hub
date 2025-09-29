@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Awards Marketing Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            color: #2d2d2d;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            animation: sparkleFloat 3s ease-in-out infinite;
+            font-size: 20px;
+            opacity: 0;
+            z-index: 1000;
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% { opacity: 0; transform: translateY(0) rotate(0deg); }
+            50% { opacity: 1; transform: translateY(-30px) rotate(180deg); }
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav h1 {
+            font-size: 2rem;
+            color: #9b4d96;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #9b4d96;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #e74c3c 0%, #9b4d96 50%, #3498db 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.1;
+        }
+
+        .shape1 { width: 100px; height: 100px; background: white; top: 10%; left: 10%; animation-delay: 0s; }
+        .shape2 { width: 150px; height: 150px; background: white; top: 60%; right: 15%; animation-delay: 2s; }
+        .shape3 { width: 80px; height: 80px; background: white; bottom: 20%; left: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #2d2d2d;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-top: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(155, 77, 150, 0.05) 0%, rgba(52, 152, 219, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .card.purple { border-top-color: #9b4d96; }
+        .card.blue { border-top-color: #3498db; }
+        .card.red { border-top-color: #e74c3c; }
+        .card.orange { border-top-color: #e67e22; }
+        .card.teal { border-top-color: #1abc9c; }
+        .card.yellow { border-top-color: #f39c12; }
+        .card.pink { border-top-color: #e91e63; }
+        .card.green { border-top-color: #27ae60; }
+        .card.indigo { border-top-color: #6c5ce7; }
+        .card.coral { border-top-color: #fd79a8; }
+
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #2d2d2d;
+        }
+
+        .card .hook {
+            font-style: italic;
+            color: #9b4d96;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: #e74c3c;
+        }
+
+        .modal-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #9b4d96;
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2d2d2d;
+        }
+
+        .modal-content .hook {
+            font-style: italic;
+            color: #9b4d96;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-content li {
+            padding: 0.7rem 0;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .modal-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #9b4d96;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #9b4d96 0%, #3498db 100%);
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: white;
+            color: #9b4d96;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            nav h1 {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Fashion Awards Marketing Hub</h1>
+        <div class="nav-links">
+            <a onclick="scrollToSection('approaches')">Approaches</a>
+            <a onclick="scrollToSection('audiences')">Audiences</a>
+            <a onclick="scrollToSection('benefits')">Benefits</a>
+            <a onclick="scrollToSection('comparisons')">Comparisons</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="floating-shape shape1"></div>
+        <div class="floating-shape shape2"></div>
+        <div class="floating-shape shape3"></div>
+        <h2>Transform Your Future in Fashion</h2>
+        <p>Exploring marketing angles, target audiences, and positioning strategies for the Fashion Awards program</p>
+    </div>
+
+    <section id="approaches">
+        <div class="section-header">
+            <h2>10 Marketing Approaches</h2>
+            <p>Different angles to sell the opportunity</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card purple" onclick="openModal('approach1')">
+                <h3>1. Value & ROI</h3>
+                <p class="hook">"The $45 Investment That Could Change Your Career"</p>
+                <p>Click to explore this approach</p>
+            </div>
+
+            <div class="card blue" onclick="openModal('approach2')">
+                <h3>2. Urgency & Head Start</h3>
+                <p class="hook">"Your Fashion Career Starts Now, Not After Graduation"</p>
+                <p>Click to explore this approach</p>
+            </div>
+
+            <div class="card red" onclick="openModal('approach3')">
+                <h3>3. Career Exploration</h3>
+                <p class="hook">"Find Out If Fashion Is Really For You"</p>
+                <p>Click to explore this approach</p>
+            </div>
+
+            <div class="card orange" onclick="openModal('approach4')">
+                <h3>4. Access & Equity</h3>
+                <p class="hook">"No Connections, No Fashion School, No Problem"</p>
+                <p>Click to explore this approach</p>
+            </div>
+
+            <div class="card teal" onclick="openModal('approach5')">
+                <h3>5. Portfolio & Proof</h3>
+                <p class="hook">"Walk Away With Real Credentials, Not Just Certificates"</p>
+                <p>Click to explore this approach</p>
+            </div>
+
+            <div class="card yellow" onclick="openModal('approach6')">
+                <h3>6. Skills & Future-Proofing</h3>
+                <p class="hook">"Learn the AI Skills That Are Reshaping Fashion"</p>
+                <p>Click to explore this approach</p>
+            </div>
+
+            <div class="card pink" onclick="openModal('approach7')">
+                <h3>7. Community & Network</h3>
+                <p class="hook">"Join a Community of Emerging Designers and Industry Pros"</p>
+                <p>Click to explore this approach</p>
+            </div>
+
+            <div class="card green" onclick="openModal('approach8')">
+                <h3>8. Creative Freedom</h3>
+                <p class="hook">"Your Vision, Brought to Life"</p>
+                <p>Click to explore this approach</p>
+            </div>
+
+            <div class="card indigo" onclick="openModal('approach9')">
+                <h3>9. Entrepreneurship</h3>
+                <p class="hook">"Learn What It Takes to Actually Sell Fashion"</p>
+                <p>Click to explore this approach</p>
+            </div>
+
+            <div class="card coral" onclick="openModal('approach10')">
+                <h3>10. Transformation</h3>
+                <p class="hook">"Who Will You Become in 6 Months?"</p>
+                <p>Click to explore this approach</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="audiences">
+        <div class="section-header">
+            <h2>Target Audiences</h2>
+            <p>Who should we reach and how to speak to them</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card purple" onclick="openModal('audience1')">
+                <h3>High School Students</h3>
+                <p>Ages 16-18, exploring career options</p>
+            </div>
+
+            <div class="card blue" onclick="openModal('audience2')">
+                <h3>College Students</h3>
+                <p>Ages 18-22, building toward career</p>
+            </div>
+
+            <div class="card red" onclick="openModal('audience3')">
+                <h3>Recent Graduates</h3>
+                <p>Ages 22-25, actively job searching</p>
+            </div>
+
+            <div class="card orange" onclick="openModal('audience4')">
+                <h3>Career Changers</h3>
+                <p>Ages 25-35, pivoting to fashion</p>
+            </div>
+
+            <div class="card teal" onclick="openModal('audience5')">
+                <h3>Self-Taught Creatives</h3>
+                <p>Hobbyists ready to go professional</p>
+            </div>
+
+            <div class="card yellow" onclick="openModal('audience6')">
+                <h3>Underrepresented Communities</h3>
+                <p>Breaking barriers in fashion</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits">
+        <div class="section-header">
+            <h2>Key Benefits</h2>
+            <p>What participants actually get from this program</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card purple" onclick="openModal('benefit1')">
+                <h3>Mentorship Access</h3>
+                <p>4-6 months with industry professionals</p>
+            </div>
+
+            <div class="card blue" onclick="openModal('benefit2')">
+                <h3>Skills Development</h3>
+                <p>From AI tools to garment construction</p>
+            </div>
+
+            <div class="card red" onclick="openModal('benefit3')">
+                <h3>Portfolio Development</h3>
+                <p>Professional-quality work samples</p>
+            </div>
+
+            <div class="card orange" onclick="openModal('benefit4')">
+                <h3>Industry Connections</h3>
+                <p>Network that opens doors</p>
+            </div>
+
+            <div class="card teal" onclick="openModal('benefit5')">
+                <h3>Real-World Experience</h3>
+                <p>Actual production from concept to runway</p>
+            </div>
+
+            <div class="card yellow" onclick="openModal('benefit6')">
+                <h3>Career Clarity</h3>
+                <p>Discover what you truly love</p>
+            </div>
+
+            <div class="card pink" onclick="openModal('benefit7')">
+                <h3>Credibility Boost</h3>
+                <p>Resume builders and references</p>
+            </div>
+
+            <div class="card green" onclick="openModal('benefit8')">
+                <h3>Revenue Potential</h3>
+                <p>Your designs sold to real customers</p>
+            </div>
+
+            <div class="card indigo" onclick="openModal('benefit9')">
+                <h3>Confidence Building</h3>
+                <p>Overcome imposter syndrome</p>
+            </div>
+
+            <div class="card coral" onclick="openModal('benefit10')">
+                <h3>Future Opportunities</h3>
+                <p>Launchpad for what's next</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparisons">
+        <div class="section-header">
+            <h2>Value Comparisons</h2>
+            <p>How this program stacks up against alternatives</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card purple" onclick="openModal('compare1')">
+                <h3>vs. Fashion School</h3>
+                <p>Cost, time, and practical experience</p>
+            </div>
+
+            <div class="card blue" onclick="openModal('compare2')">
+                <h3>vs. Other Competitions</h3>
+                <p>Beyond just prizes and recognition</p>
+            </div>
+
+            <div class="card red" onclick="openModal('compare3')">
+                <h3>vs. Doing Nothing</h3>
+                <p>The cost of waiting</p>
+            </div>
+
+            <div class="card orange" onclick="openModal('compare4')">
+                <h3>vs. Online Courses</h3>
+                <p>Accountability and real results</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-section">
+        <h2>Ready to Move Forward?</h2>
+        <p>Use these concepts to craft your perfect marketing strategy</p>
+        <button class="cta-button" onclick="scrollToSection('approaches')">Explore More Approaches</button>
+    </div>
+
+    <div id="modal" class="modal" onclick="closeModalOnOutside(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        const modalData = {
+            approach1: {
+                title: "Value & ROI Approach",
+                hook: "The $45 Investment That Could Change Your Career",
+                sections: [
+                    {
+                        subtitle: "Key Points:",
+                        points: [
+                            "Entry fee vs fashion school tuition comparison ($45 vs $50,000+)",
+                            "If selected: Free 6-month mentorship program (worth thousands)",
+                            "Industry connections that typically take years to build",
+                            "Even if not selected: AI design portfolio created",
+                            "Revenue potential from sold garments",
+                            "Letters of recommendation from industry professionals"
+                        ]
+                    }
+                ]
+            },
+            approach2: {
+                title: "Urgency & Head Start Approach",
+                hook: "Your Fashion Career Starts Now, Not After Graduation",
+                sections: [
+                    {
+                        subtitle: "Key Points:",
+                        points: [
+                            "Get real experience while peers are still in classrooms",
+                            "Build portfolio before graduating",
+                            "Industry connections made early",
+                            "By graduation, you'll already have: runway credit, sold work, mentorship",
+                            "AI is changing fashion RIGHT NOW, be part of it",
+                            "Don't wait to be ready, get ready by doing"
+                        ]
+                    }
+                ]
+            },
+            approach3: {
+                title: "Career Exploration Approach",
+                hook: "Find Out If Fashion Is Really For You (And Which Part You Love)",
+                sections: [
+                    {
+                        subtitle: "Key Points:",
+                        points: [
+                            "Low-risk way to test fashion interest ($45 vs years of commitment)",
+                            "Discover which aspect you love: design, production, tech, business",
+                            "Learn if this is passion or hobby before investing in degree",
+                            "Get honest feedback from working professionals",
+                            "Try before you commit to fashion school",
+                            "AI skills transfer to many careers regardless"
+                        ]
+                    }
+                ]
+            },
+            approach4: {
+                title: "Access & Equity Approach",
+                hook: "No Connections, No Fashion School, No Problem",
+                sections: [
+                    {
+                        subtitle: "Key Points:",
+                        points: [
+                            "Don't know anyone in fashion? Neither do most applicants",
+                            "Can't afford expensive education? This is $45",
+                            "No sewing skills yet? That's what mentorship teaches",
+                            "First-gen student? Perfect, this levels the playing field",
+                            "AI has democratized design, this democratizes industry entry",
+                            "Your vision and work ethic matter, not your background"
+                        ]
+                    }
+                ]
+            },
+            approach5: {
+                title: "Portfolio & Proof Approach",
+                hook: "Walk Away With Real Credentials, Not Just Certificates",
+                sections: [
+                    {
+                        subtitle: "Key Points:",
+                        points: [
+                            "Runway show credit for resume/portfolio",
+                            "Commercially sold garments (real market validation)",
+                            "Professional photography of your work",
+                            "Industry recommendation letters",
+                            "LinkedIn/portfolio content that stands out",
+                            "Proof of abilities, not just coursework"
+                        ]
+                    }
+                ]
+            },
+            approach6: {
+                title: "Skills & Future-Proofing Approach",
+                hook: "Learn the AI Skills That Are Reshaping Fashion",
+                sections: [
+                    {
+                        subtitle: "Key Points:",
+                        points: [
+                            "AI is revolutionizing fashion design and production",
+                            "Be ahead of the curve, not catching up later",
+                            "Skills applicable beyond fashion (tech, marketing, product design)",
+                            "Understanding AI now means competitive advantage for a decade",
+                            "Traditional fashion education is already outdated",
+                            "Mentors will teach both AI tools AND traditional craftsmanship"
+                        ]
+                    }
+                ]
+            },
+            approach7: {
+                title: "Community & Network Approach",
+                hook: "Join a Community of Emerging Designers and Industry Pros",
+                sections: [
+                    {
+                        subtitle: "Key Points:",
+                        points: [
+                            "Connect with 4 other finalists (your cohort)",
+                            "Build relationships with mentors who can open doors",
+                            "Network with judges and industry professionals",
+                            "Lifelong connections with people at your level",
+                            "Access to a community beyond the 6 months",
+                            "Collaborative learning environment"
+                        ]
+                    }
+                ]
+            },
+            approach8: {
+                title: "Creative Freedom Approach",
+                hook: "Your Vision, Brought to Life",
+                sections: [
+                    {
+                        subtitle: "Key Points:",
+                        points: [
+                            "Complete creative control over your collection",
+                            "Not designing for a grade, designing for real people",
+                            "See your ideas become physical garments",
+                            "Creative expression meets real-world production",
+                            "Freedom to experiment with AI tools",
+                            "Your aesthetic, your story, your collection"
+                        ]
+                    }
+                ]
+            },
+            approach9: {
+                title: "Entrepreneurship Approach",
+                hook: "Learn What It Takes to Actually Sell Fashion",
+                sections: [
+                    {
+                        subtitle: "Key Points:",
+                        points: [
+                            "Understanding the business side of fashion",
+                            "From concept to consumer: the full pipeline",
+                            "Pricing, production costs, market demand",
+                            "What it really takes to launch a brand",
+                            "Entrepreneurial skills for future ventures",
+                            "Real sales data from your own work"
+                        ]
+                    }
+                ]
+            },
+            approach10: {
+                title: "Transformation Approach",
+                hook: "Who Will You Become in 6 Months?",
+                sections: [
+                    {
+                        subtitle: "Key Points:",
+                        points: [
+                            "Intensive learning transforms you as a creator",
+                            "Build confidence through doing, not just studying",
+                            "Overcome imposter syndrome by producing real work",
+                            "Discover capabilities you didn't know you had",
+                            "Mentorship accelerates growth exponentially",
+                            "Come out the other side a different person"
+                        ]
+                    }
+                ]
+            },
+            audience1: {
+                title: "High School Students (16-18)",
+                sections: [
+                    {
+                        subtitle: "Why They're Perfect:",
+                        points: [
+                            "Time to dedicate to intensive program",
+                            "Exploring career options, not committed yet",
+                            "Tech-savvy, comfortable with AI",
+                            "Passionate and all-in when excited",
+                            "College applications benefit from unique experience",
+                            "Open to learning, fewer preconceptions"
+                        ]
+                    },
+                    {
+                        subtitle: "Messaging Focus:",
+                        points: [
+                            "Turn your hobby into something real",
+                            "Get professional validation of your skills",
+                            "Learn what you've been missing",
+                            "Bridge from amateur to professional",
+                            "Finally take your creativity seriously"
+                        ]
+                    }
+                ]
+            },
+            audience6: {
+                title: "Underrepresented Communities in Fashion",
+                sections: [
+                    {
+                        subtitle: "Why They're Perfect:",
+                        points: [
+                            "Lack traditional access to fashion industry",
+                            "Bring fresh perspectives and untold stories",
+                            "AI levels the playing field for entry",
+                            "May not see themselves in traditional fashion spaces",
+                            "Need programs that actively welcome them"
+                        ]
+                    },
+                    {
+                        subtitle: "Messaging Focus:",
+                        points: [
+                            "Fashion is for everyone",
+                            "Your perspective is needed and valued",
+                            "No gatekeeping, just opportunity",
+                            "Diversity makes fashion better",
+                            "Access doesn't require connections"
+                        ]
+                    }
+                ]
+            },
+            benefit1: {
+                title: "Mentorship Access",
+                sections: [
+                    {
+                        subtitle: "What You Get:",
+                        points: [
+                            "4-6 months of direct mentorship",
+                            "Work with actual industry professionals",
+                            "Personalized guidance for YOUR goals",
+                            "Ask questions you can't Google",
+                            "Relationships that extend beyond program"
+                        ]
+                    }
+                ]
+            },
+            benefit2: {
+                title: "Skills Development",
+                sections: [
+                    {
+                        subtitle: "What You'll Learn:",
+                        points: [
+                            "Pattern-making and garment construction",
+                            "AI tools for fashion design",
+                            "Production logistics and workflow",
+                            "Technical skills (sewing, finishing)",
+                            "Business side of fashion"
+                        ]
+                    }
+                ]
+            },
+            benefit3: {
+                title: "Portfolio Development",
+                sections: [
+                    {
+                        subtitle: "What You'll Build:",
+                        points: [
+                            "5-piece collection professionally photographed",
+                            "Runway show images and video",
+                            "Professional presentation materials",
+                            "Case study of design-to-production process",
+                            "Tangible proof of abilities"
+                        ]
+                    }
+                ]
+            },
+            benefit4: {
+                title: "Industry Connections",
+                sections: [
+                    {
+                        subtitle: "Who You'll Meet:",
+                        points: [
+                            "Direct access to mentors' networks",
+                            "Judges who are industry decision-makers",
+                            "Other finalists as peer network",
+                            "Potential employer relationships",
+                            "Future collaboration opportunities"
+                        ]
+                    }
+                ]
+            },
+            benefit5: {
+                title: "Real-World Experience",
+                sections: [
+                    {
+                        subtitle: "What You'll Experience:",
+                        points: [
+                            "Actual production from start to finish",
+                            "Understanding of full fashion pipeline",
+                            "Market validation through sales",
+                            "Professional work environment",
+                            "Deadline management and collaboration"
+                        ]
+                    }
+                ]
+            },
+            benefit6: {
+                title: "Career Clarity",
+                sections: [
+                    {
+                        subtitle: "What You'll Discover:",
+                        points: [
+                            "Which aspect of fashion you actually love",
+                            "Different career paths available",
+                            "Test your passion with real stakes",
+                            "Get honest feedback on your strengths",
+                            "Make informed decisions about future"
+                        ]
+                    }
+                ]
+            },
+            benefit7: {
+                title: "Credibility Boost",
+                sections: [
+                    {
+                        subtitle: "What You'll Gain:",
+                        points: [
+                            "Runway show credit",
+                            "Published work and press coverage",
+                            "Industry recommendation letters",
+                            "Selected from X applicants prestige",
+                            "Professional references"
+                        ]
+                    }
+                ]
+            },
+            benefit8: {
+                title: "Revenue Potential",
+                sections: [
+                    {
+                        subtitle: "Business Experience:",
+                        points: [
+                            "Garments sold to real customers",
+                            "Understanding pricing and profit margins",
+                            "Market feedback on your designs",
+                            "Potential ongoing sales after show",
+                            "Business model experience"
+                        ]
+                    }
+                ]
+            },
+            benefit9: {
+                title: "Confidence Building",
+                sections: [
+                    {
+                        subtitle: "Personal Growth:",
+                        points: [
+                            "Overcome imposter syndrome through doing",
+                            "Validation from industry professionals",
+                            "Proof you can complete challenging projects",
+                            "Public showcase of your work",
+                            "Earned sense of accomplishment"
+                        ]
+                    }
+                ]
+            },
+            benefit10: {
+                title: "Future Opportunities",
+                sections: [
+                    {
+                        subtitle: "What Comes Next:",
+                        points: [
+                            "Job leads from mentor connections",
+                            "Foundation for launching own brand",
+                            "Skills for freelance work",
+                            "Additional competition eligibility",
+                            "Speaking/teaching opportunities"
+                        ]
+                    }
+                ]
+            },
+            compare1: {
+                title: "Fashion Awards vs. Fashion School",
+                sections: [
+                    {
+                        subtitle: "Cost Comparison:",
+                        points: [
+                            "Fashion School: $30k-$60k per year, 2-4 years",
+                            "This Program: $45 entry, free 6-month mentorship if selected"
+                        ]
+                    },
+                    {
+                        subtitle: "Learning Style:",
+                        points: [
+                            "Fashion School: Theoretical, classroom-based",
+                            "This Program: Hands-on, production-focused"
+                        ]
+                    },
+                    {
+                        subtitle: "Outcomes:",
+                        points: [
+                            "Fashion School: Degree but limited industry connections",
+                            "This Program: Direct mentorship from working professionals"
+                        ]
+                    }
+                ]
+            },
+            compare2: {
+                title: "Fashion Awards vs. Other Competitions",
+                sections: [
+                    {
+                        subtitle: "Traditional Competitions:",
+                        points: [
+                            "Just prize money or recognition",
+                            "One-time event",
+                            "No follow-up support"
+                        ]
+                    },
+                    {
+                        subtitle: "This Program:",
+                        points: [
+                            "Intensive mentorship and skill development",
+                            "6-month transformative experience",
+                            "Industry connections that continue"
+                        ]
+                    }
+                ]
+            },
+            compare3: {
+                title: "Fashion Awards vs. Doing Nothing/Waiting",
+                sections: [
+                    {
+                        subtitle: "Waiting:",
+                        points: [
+                            "Years before breaking into industry",
+                            "Learning on your own without guidance",
+                            "Building portfolio in isolation"
+                        ]
+                    },
+                    {
+                        subtitle: "This Program:",
+                        points: [
+                            "Potential fast-track in 6 months",
+                            "Expert mentorship and feedback",
+                            "Professional-quality portfolio pieces"
+                        ]
+                    }
+                ]
+            },
+            compare4: {
+                title: "Fashion Awards vs. Online Courses",
+                sections: [
+                    {
+                        subtitle: "Online Courses:",
+                        points: [
+                            "Self-paced, no accountability",
+                            "Generic content",
+                            "Certificate with limited value"
+                        ]
+                    },
+                    {
+                        subtitle: "This Program:",
+                        points: [
+                            "Structured with real deadlines",
+                            "Personalized mentorship",
+                            "Real produced work and industry connections"
+                        ]
+                    }
+                ]
+            }
+        };
+
+        function openModal(id) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            const data = modalData[id];
+            
+            if (!data) return;
+            
+            let html = `<h2>${data.title}</h2>`;
+            
+            if (data.hook) {
+                html += `<p class="hook">"${data.hook}"</p>`;
+            }
+            
+            data.sections.forEach(section => {
+                if (section.subtitle) {
+                    html += `<h3>${section.subtitle}</h3>`;
+                }
+                html += '<ul>';
+                section.points.forEach(point => {
+                    html += `<li>${point}</li>`;
+                });
+                html += '</ul>';
+            });
+            
+            modalBody.innerHTML = html;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOnOutside(event) {
+            if (event.target.id === 'modal') {
+                closeModal();
+            }
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Create sparkles on mouse movement
+        let sparkleTimeout;
+        document.addEventListener('mousemove', (e) => {
+            clearTimeout(sparkleTimeout);
+            sparkleTimeout = setTimeout(() => {
+                createSparkle(e.clientX, e.clientY);
+            }, 100);
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.textContent = '✨';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html> Focus:",
+                        points: [
+                            "Career exploration before college commitment",
+                            "Stand out on college applications",
+                            "Test drive fashion as a career",
+                            "Start building portfolio in high school",
+                            "Get clarity on what to study"
+                        ]
+                    },
+                    {
+                        subtitle: "Potential Concerns:",
+                        points: [
+                            "Are mentors interested in this age group?",
+                            "Maturity level for professional environment",
+                            "Parental permission/involvement needed",
+                            "Transportation to mentorship sessions"
+                        ]
+                    }
+                ]
+            },
+            audience2: {
+                title: "College Students (18-22)",
+                sections: [
+                    {
+                        subtitle: "Why They're Perfect:",
+                        points: [
+                            "Actively building toward career",
+                            "Need portfolio pieces and experience",
+                            "Flexible schedules (can work around classes)",
+                            "Looking for internships and opportunities",
+                            "Building professional network",
+                            "May be in related majors (fashion, design, business)"
+                        ]
+                    },
+                    {
+                        subtitle: "Messaging Focus:",
+                        points: [
+                            "Get ahead of peers",
+                            "Build resume while in school",
+                            "Alternative to expensive fashion school",
+                            "Real experience vs theoretical learning",
+                            "Industry connections for post-graduation"
+                        ]
+                    }
+                ]
+            },
+            audience3: {
+                title: "Recent Graduates (22-25)",
+                sections: [
+                    {
+                        subtitle: "Why They're Perfect:",
+                        points: [
+                            "Actively job searching or career pivoting",
+                            "Desperate for experience to differentiate themselves",
+                            "May have wrong degree, want to break into fashion",
+                            "Understand value of networking and mentorship",
+                            "Ready to work hard and commit",
+                            "Can dedicate full time if needed"
+                        ]
+                    },
+                    {
+                        subtitle: "Messaging Focus:",
+                        points: [
+                            "Career pivot opportunity",
+                            "Break into fashion without going back to school",
+                            "Demonstrate abilities to potential employers",
+                            "Network with people who are hiring",
+                            "Portfolio piece that proves you can do the work"
+                        ]
+                    }
+                ]
+            },
+            audience4: {
+                title: "Career Changers (25-35)",
+                sections: [
+                    {
+                        subtitle: "Why They're Perfect:",
+                        points: [
+                            "Clear about what they want",
+                            "Bring diverse perspectives and skills",
+                            "Often more committed and focused",
+                            "Life experience adds depth to design",
+                            "May have savings to support themselves during program",
+                            "Serious about making a change"
+                        ]
+                    },
+                    {
+                        subtitle: "Messaging Focus:",
+                        points: [
+                            "It's not too late to pursue your passion",
+                            "Leverage your existing skills in new context",
+                            "Test the waters before full career change",
+                            "Low-risk way to explore fashion industry",
+                            "Adult learners welcome"
+                        ]
+                    }
+                ]
+            },
+            audience5: {
+                title: "Self-Taught Creatives/Hobbyists",
+                sections: [
+                    {
+                        subtitle: "Why They're Perfect:",
+                        points: [
+                            "Already passionate about design",
+                            "May have developed AI skills independently",
+                            "Looking for validation and next steps",
+                            "Want to know if they're good enough",
+                            "Need structure and guidance",
+                            "Hungry for professional feedback"
+                        ]
+                    },
+                    {
+                        subtitle: "Messaging
